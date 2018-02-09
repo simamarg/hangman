@@ -2,21 +2,14 @@ import React, { Component } from 'react';
 import Letter from './Letter';
 
 class Word extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {word: this.props.word};
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps !== this.props) {
-            this.setState({word: nextProps.word});
-        }
-    }
-
     render() {
         return(
             <div>
-                {this.state.word.split('').map((element, index) => <Letter key={index} letter={element.toUpperCase()}/>)}
+                {this.props.word.split('').map((element, index) => {
+                    let letter = element.toUpperCase();
+                    return this.props.isLetterInWord(letter, this.props.guessedLetters) ? 
+                        <Letter key={index} letter={letter} inKeyBoard={false} className="Word-letter"/> : 
+                        <Letter key={index} letter="_" inKeyBoard={false} className="Word-letter"/>})}
             </div>
         );
     }
