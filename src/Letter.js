@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Letter extends Component {
     onHandleClick = () => {
         if (this.props.inKeyBoard) {
-            this.props.addToGuessedLetters(this.props.letter);
+            this.props.guessLetter(this.props.letter);
         }
     }
 

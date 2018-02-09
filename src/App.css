@@ -43,11 +43,13 @@
 }
 
 .Checked-letter-correct {
-  color: green;
+  background-color: lightgreen;
+  color: grey;
 }
 
 .Checked-letter-wrong {
-  color: red;
+  background-color: lightcoral;
+  color: grey;
 }
 
 @keyframes App-logo-spin {

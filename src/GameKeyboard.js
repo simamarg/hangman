@@ -31,7 +31,7 @@ class GameKeyboard extends Component {
         return(
             <div>
                 {this.state.letters.map((element, index) => <Letter key={index} letter={element} inKeyBoard={true} 
-                    addToGuessedLetters={this.props.addToGuessedLetters} className={this.classForLetter(element)}/>)}
+                    guessLetter={this.props.guessLetter} className={this.classForLetter(element)}/>)}
             </div>
         );
     }

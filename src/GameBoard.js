@@ -18,17 +18,28 @@ class GameBoard extends Component {
     }
 
     moveToNextWord = () => {
-        if (!this.state.remainingLettersInCurrWord.length) {
-            if (this.state.currWordIndex < this.state.words.length - 1) {
+        if (!this.state.remainingLettersInCurrWord.length) { // user guessed the word
+            if (this.state.currWordIndex < this.state.words.length - 1) { // there are still word to guess in the list
                 this.setState(prevState => ({currWordIndex: prevState.currWordIndex + 1, guessedLetters: "", 
                     lives: 10, remainingLettersInCurrWord: prevState.words[prevState.currWordIndex + 1].split('')}));
-            } else {
-                alert(`Game over, you win! Your score is: ${this.state.score}`);
+            } else { // user guessed all the words from the list
+                setTimeout(() => {alert(`Congratulations, you won the game! Your score is: ${this.state.score}`);}, 1000);
             }
         }
     }
 
-    addToGuessedLetters = (letter) => {
+    gameOver = () => {
+        if (this.state.lives === 0) {
+            setTimeout(() => {
+                let restart = window.confirm(`Sorry, you lost :( Your score is:${this.state.score}. Press ok to restart game.`);
+                if (restart) {
+                    this.setState({score: 0, lives: 10, currWordIndex: 0, guessedLetters: "", remainingLettersInCurrWord: []});
+                }
+            }, 1000);
+        }
+    }
+
+    guessLetter = (letter) => {
         if (this.isLetterInWord(letter, this.state.words[this.state.currWordIndex])) { // correct guess
             this.setState(prevState => ({score: prevState.score + 10, guessedLetters: prevState.guessedLetters + letter,
                 remainingLettersInCurrWord: prevState.remainingLettersInCurrWord.filter(element => 
@@ -36,37 +47,18 @@ class GameBoard extends Component {
                 this.moveToNextWord);
         } else { // wrong guess
             let score = this.state.score;
-            if (this.state.score - 5 > 0) {
+            if (score - 5 > 0) {
                 score -= 5;
             } else {
                 score = 0;
             }
-        
-            // if (this.state.lives > 0) {
-            //     let score = this.state.score;
-            //     if (score >= 1) {
-            //         score -= 1;
-            //     }
-            //     this.setState(prevState => ({score: score, lives: prevState.lives - 1}));
-            // } else {
-            //     let restart = window.confirm(`Sorry, you lost :( Your score is: ${this.state.score - 1}. Press ok to restart game.`);
-            //     if (restart) {
-            //         this.setState({score: 0, lives: 10, currWordIndex: 0, guessedLetters: ""});
-            //     } else {
-            //         this.setState(prevState => ({lives: 0, score: prevState.score - 1}));
-            //     }
-            // }
+            this.setState(prevState => ({lives: prevState.lives - 1, guessedLetters: prevState.guessedLetters + letter, 
+                score: score}), this.gameOver);
         }
     }
 
     componentDidMount() {
         this.setState({remainingLettersInCurrWord: this.state.words[0].split('')});
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps !== this.props) {
-            this.setState({words: [...nextProps.words]});
-        }
     }
 
     render() {
@@ -77,7 +69,7 @@ class GameBoard extends Component {
                 <div className="Lives">Lives: {this.state.lives}</div>
                 <Word word={word} guessedLetters={this.state.guessedLetters}
                     isLetterInWord={this.isLetterInWord}/>
-                <GameKeyboard addToGuessedLetters={this.addToGuessedLetters} guessedLetters={this.state.guessedLetters} 
+                <GameKeyboard guessLetter={this.guessLetter} guessedLetters={this.state.guessedLetters} 
                     isLetterInWord={this.isLetterInWord} word={word}/>
             </div>
         );
