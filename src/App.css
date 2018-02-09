@@ -7,35 +7,72 @@
   text-align: center;
 }
 
-.App-logo {
+/* .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
-}
+} */
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+  font-family: 'Caveat Brush', cursive;
+  font-size: 4em;
+  color: #473664;
+  margin-top: 80px;
+  margin-bottom: 20px;
+  padding: 0 20px;
 }
 
-.App-title {
+button {
+  font-family: 'Caveat Brush', cursive; 
+  color: black; 
+  border: 2px solid #473664;
+  padding: 10px 20px;
+  display: inline-block;
   font-size: 1.5em;
+  margin: 15px 5px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: none;
 }
 
-.App-intro {
-  font-size: large;
+button:hover {
+  border: 2px solid #473664;
+    color: white;
+    background-color: #473664;
+    color: white;
+}
+
+.Category, .Score, .Lives {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 1.8em;
+    color: #cc374c;
+}
+
+.Keyboard {
+  width: 95%;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.Word {
+  margin: 20px 0;
 }
 
 .Word-letter, .Keyboard-letter, .Checked-letter-correct, .Checked-letter-wrong {
   border: 1px solid grey;
   padding: 10px;
-  margin: 10px 0;
+  margin: 10px 3px;
   display: inline-block;
   width: 45px;
   height: 45px;
   cursor: pointer;
+  border-radius: 10px;
+  line-height: 23px;
+  font-family: 'Boogaloo', cursive;
+  font-size: 1.2em;
+}
 
+.Keyboard-letter:hover {
+  background-color: #d7cfd6;
 }
 
 .Word-letter, Checked-letter-correct, .Checked-letter-wrong {
@@ -48,11 +85,11 @@
 }
 
 .Checked-letter-wrong {
-  background-color: lightcoral;
+  background-color: #ffc4c4;
   color: grey;
 }
 
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}
+} */

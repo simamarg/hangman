@@ -20,9 +20,10 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <h1>HANGMAN</h1>
+                <h1 className="App-header">HANGMAN GAME!</h1>
                 {(this.state.chosenCategory === "") ?
                 (<div>
+                    <div className="Category">Choose a category:</div>
                     {this.state.categories.map((element, index) => <button type="button" key={index} value={element.category} 
                         onClick={this.chooseCategory}> {element.category} </button>)}
                 </div>) :

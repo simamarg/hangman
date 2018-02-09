@@ -4,7 +4,7 @@ import Letter from './Letter';
 class Word extends Component {
     render() {
         return(
-            <div>
+            <div className="Word"> 
                 {this.props.word.split('').map((element, index) => {
                     let letter = element.toUpperCase();
                     return this.props.isLetterInWord(letter, this.props.guessedLetters) ? 

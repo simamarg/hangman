@@ -29,7 +29,7 @@ class GameKeyboard extends Component {
 
     render() {
         return(
-            <div>
+            <div className="Keyboard">
                 {this.state.letters.map((element, index) => <Letter key={index} letter={element} inKeyBoard={true} 
                     guessLetter={this.props.guessLetter} className={this.classForLetter(element)}/>)}
             </div>
