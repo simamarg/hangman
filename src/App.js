@@ -17,6 +17,10 @@ class App extends Component {
         this.setState({chosenCategory: event.target.value});
     }
 
+    restartGame = () => {
+        this.setState({chosenCategory: ""});
+    }
+
     render() {
         return (
             <div className="App">
@@ -32,7 +36,7 @@ class App extends Component {
                 (<div>
                     <div className="Category">Category chosen: {this.state.chosenCategory}</div>
                     <GameBoard words={this.state.categories.filter(element => element.category === 
-                        this.state.chosenCategory)[0].words} lives={this.state.lives} />
+                        this.state.chosenCategory)[0].words} lives={this.state.lives} restartGame={this.restartGame} />
                 </div>)}
             </div>
         );

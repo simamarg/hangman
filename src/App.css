@@ -48,9 +48,15 @@ button:hover {
     padding: 0 20px;
 }
 
-img {
+img.Man {
   width: 150px;
   margin-top: 10px;
+}
+
+img.Great-job {
+  vertical-align: bottom;
+  height: 70px;
+  margin-left: 10px;
 }
 
 .Keyboard {
@@ -83,7 +89,7 @@ img {
   background-color: #d7cfd6;
 }
 
-.Word-letter, Checked-letter-correct, .Checked-letter-wrong {
+.Word-letter, .Checked-letter-correct, .Checked-letter-wrong {
   pointer-events: none;  
 }
 
