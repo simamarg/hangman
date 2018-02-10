@@ -25,7 +25,7 @@ class App extends Component {
     }
 
     restartGame = () => {
-        this.setState({chosenCategory: ""});
+        this.setState({chosenCategory: "", chosenWords : []});
     }
 
     render() {
