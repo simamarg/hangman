@@ -5,7 +5,7 @@ import GameKeyboard from './GameKeyboard';
 class GameBoard extends Component {
     constructor(props) {
         super(props);
-        this.state = {words: [...this.props.words], score: 0, lives: 10, currWordIndex: 0, guessedLetters: "",
+        this.state = {words: [...this.props.words], score: 0, lives: this.props.lives, currWordIndex: 0, guessedLetters: "",
             remainingLettersInCurrWord: []};
     }
 
@@ -20,8 +20,11 @@ class GameBoard extends Component {
     moveToNextWord = () => {
         if (!this.state.remainingLettersInCurrWord.length) { // user guessed the word
             if (this.state.currWordIndex < this.state.words.length - 1) { // there are still word to guess in the list
-                this.setState(prevState => ({currWordIndex: prevState.currWordIndex + 1, guessedLetters: "", 
-                    lives: 10, remainingLettersInCurrWord: prevState.words[prevState.currWordIndex + 1].split('')}));
+                setTimeout(() => {
+                    this.setState(prevState => ({currWordIndex: prevState.currWordIndex + 1, guessedLetters: "", 
+                        remainingLettersInCurrWord: prevState.words[prevState.currWordIndex + 1].split(''), 
+                        lives: this.props.lives}));
+                }, 2000);
             } else { // user guessed all the words from the list
                 setTimeout(() => {alert(`Congratulations, you won the game! Your score is: ${this.state.score}`);}, 1000);
             }
@@ -62,15 +65,16 @@ class GameBoard extends Component {
     }
 
     render() {
-        let word = this.state.words[this.state.currWordIndex]; 
+        let word = this.state.words[this.state.currWordIndex];
+        let image = `/assets/hangman${this.state.lives}.png`;
         return(
             <div>
-                <div className="Score">Score: {this.state.score}</div>
-                <div className="Lives">Lives: {this.state.lives}</div>
+                <div className="Score">Score: {this.state.score}, Lives: {this.state.lives}</div>
                 <Word word={word} guessedLetters={this.state.guessedLetters}
                     isLetterInWord={this.isLetterInWord}/>
                 <GameKeyboard guessLetter={this.guessLetter} guessedLetters={this.state.guessedLetters} 
                     isLetterInWord={this.isLetterInWord} word={word}/>
+                {this.state.lives < 10 ? <img src={process.env.PUBLIC_URL + image} /> : null}
             </div>
         );
     }

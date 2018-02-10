@@ -16,35 +16,41 @@
   font-family: 'Caveat Brush', cursive;
   font-size: 4em;
   color: #473664;
-  margin-top: 80px;
+  margin-top: 60px;
   margin-bottom: 20px;
   padding: 0 20px;
 }
 
 button {
-  font-family: 'Caveat Brush', cursive; 
-  color: black; 
-  border: 2px solid #473664;
+  font-family: 'Boogaloo', cursive;
+  text-transform: uppercase;
+  background-color: #5DC8CD;
+  color: white;
+  border: none;
+  transition: all 0.2s;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   padding: 10px 20px;
   display: inline-block;
-  font-size: 1.5em;
+  font-size: 1.2em;
   margin: 15px 5px;
-  transition-duration: 0.4s;
   cursor: pointer;
-  background-color: none;
+  border-radius: 5px;
 }
 
 button:hover {
-  border: 2px solid #473664;
-    color: white;
-    background-color: #473664;
-    color: white;
+  background-color: #01939A;
 }
 
 .Category, .Score, .Lives {
     font-family: 'Caveat Brush', cursive;
     font-size: 1.8em;
-    color: #cc374c;
+    color: #01595d;
+    padding: 0 20px;
+}
+
+img {
+  width: 150px;
+  margin-top: 10px;
 }
 
 .Keyboard {
@@ -55,6 +61,7 @@ button:hover {
 
 .Word {
   margin: 20px 0;
+  padding: 0 5px;
 }
 
 .Word-letter, .Keyboard-letter, .Checked-letter-correct, .Checked-letter-wrong {
@@ -68,7 +75,8 @@ button:hover {
   border-radius: 10px;
   line-height: 23px;
   font-family: 'Boogaloo', cursive;
-  font-size: 1.2em;
+  font-size: 1.5em;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .Keyboard-letter:hover {
