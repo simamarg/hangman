@@ -98,8 +98,12 @@ class GameBoard extends Component {
                     isLetterInWord={this.isLetterInWord} showGreatJob={this.state.showGreatJob} />
                 <GameKeyboard guessLetter={this.guessLetter} guessedLetters={this.state.guessedLetters}
                     isLetterInWord={this.isLetterInWord} word={word} />
-                {this.state.lives < 10 ? <img className="Man" src={process.env.PUBLIC_URL + image} alt="hangman-drawing" /> 
-                    : null}
+                {this.state.lives < 10 ?
+                <div className="Tooltip">
+                    <span class="Tooltip-text">&copy; Gemma Correll www.gemmacorrell.com</span>
+                    <img className="Man" src={process.env.PUBLIC_URL + image} alt="hangman-drawing" />
+                </div>
+                : null}
             </div>
         );
     }
