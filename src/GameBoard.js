@@ -96,7 +96,6 @@ class GameBoard extends Component {
                 <div className="Score">Score: {this.state.score}, Lives: {this.state.lives}</div>
                 <Word word={word} guessedLetters={this.state.guessedLetters}
                     isLetterInWord={this.isLetterInWord} showGreatJob={this.state.showGreatJob} />
-                {/* {this.state.showGreatJob ? <img src={greatJob}/> : null} */}
                 <GameKeyboard guessLetter={this.guessLetter} guessedLetters={this.state.guessedLetters}
                     isLetterInWord={this.isLetterInWord} word={word} />
                 {this.state.lives < 10 ? <img className="Man" src={process.env.PUBLIC_URL + image} alt="hangman-drawing" /> 
