@@ -11,7 +11,7 @@ class Word extends Component {
                     return this.props.isLetterInWord(letter, this.props.guessedLetters) ? 
                         <Letter key={index} letter={letter} inKeyBoard={false} className="Word-letter"/> : 
                         <Letter key={index} letter="_" inKeyBoard={false} className="Word-letter"/>})}
-                {this.props.showGreatJob ? <img className="Great-job" src={greatJob}/> : null}
+                {this.props.showGreatJob ? <img className="Great-job" src={greatJob} alt="great job"/> : null}
             </div>
         );
     }

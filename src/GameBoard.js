@@ -64,7 +64,7 @@ class GameBoard extends Component {
             this.setState(prevState => ({
                 score: prevState.score + 10, guessedLetters: prevState.guessedLetters + letter,
                 remainingLettersInCurrWord: prevState.remainingLettersInCurrWord.filter(element =>
-                    element.toUpperCase() !== letter)
+                    element.toUpperCase() !== letter.toUpperCase())
             }),
                 this.moveToNextWord);
         } else { // wrong guess
@@ -80,12 +80,24 @@ class GameBoard extends Component {
             }), this.gameOver);
         }
     }
+    
+    onHandleKeyPress = (event) => {
+        let letter = event.key;
+        if (/^[A-Za-z]$/.test(letter) && !this.state.guessedLetters.includes(letter)) {
+            this.guessLetter(letter);
+        }
+    }
 
     componentDidMount() {
         this.setState({
             words: [...this.props.words], score: 0, lives: this.props.lives, currWordIndex: 0, guessedLetters: "",
             remainingLettersInCurrWord: this.props.words[0].split(''), showGreatJob: false
         });
+        document.addEventListener("keypress", this.onHandleKeyPress);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("keypress", this.onHandleKeyPress);
     }
 
     render() {
@@ -100,7 +112,7 @@ class GameBoard extends Component {
                     isLetterInWord={this.isLetterInWord} word={word} />
                 {this.state.lives < 10 ?
                 <div className="Tooltip">
-                    <span class="Tooltip-text">&copy; Gemma Correll www.gemmacorrell.com</span>
+                    <span className="Tooltip-text">&copy; Gemma Correll www.gemmacorrell.com</span>
                     <img className="Man" src={process.env.PUBLIC_URL + image} alt="hangman-drawing" />
                 </div>
                 : null}
