@@ -22,7 +22,7 @@ class GameBoard extends Component {
 
     moveToNextWord = () => {
         if (!this.state.remainingLettersInCurrWord.length) { // user guessed the word
-            if (this.state.currWordIndex < this.state.words.length - 1) { // there are still word to guess in the list
+            if (this.state.currWordIndex < this.state.words.length - 1) { // there are still words to guess in the list
                 this.setState({showGreatJob: true});
                 setTimeout(() => {
                     this.setState(prevState => ({
@@ -105,7 +105,8 @@ class GameBoard extends Component {
         let image = `/assets/hangman${this.state.lives}.png`;
         return (
             <div>
-                <div className="Score">Score: {this.state.score}, Lives: {this.state.lives}</div>
+                <div className="Score">Score: {this.state.score}, Lives: {this.state.lives}, 
+                    Words left: {this.state.words.length - this.state.currWordIndex}</div>
                 <Word word={word} guessedLetters={this.state.guessedLetters}
                     isLetterInWord={this.isLetterInWord} showGreatJob={this.state.showGreatJob} />
                 <GameKeyboard guessLetter={this.guessLetter} guessedLetters={this.state.guessedLetters}
